@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Om Shah — Digital Transformation & Organisational Agility</title>
+<style>
+  @import url('https://fonts.cdnfonts.com/css/space-grotesk');
+  @import url('https://fonts.cdnfonts.com/css/ibm-plex-sans');
+  @import url('https://fonts.cdnfonts.com/css/ibm-plex-mono');
+
+  :root {
+    --bg: #0D1013;
+    --panel: #151A1F;
+    --panel-border: #262C33;
+    --text: #E7E9EC;
+    --muted: #8B93A1;
+    --muted-2: #5B636D;
+    --amber: #E8A33D;
+    --teal: #5FBFAE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.55;
+  }
+  .display { font-family: 'Space Grotesk', sans-serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* Header / hero */
+  header { padding: 90px 0 60px; border-bottom: 1px solid #1E242B; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 18px;
+  }
+  h1.display {
+    font-size: 42px; font-weight: 600; margin: 0 0 18px; line-height: 1.18; max-width: 700px;
+  }
+  .lede { font-size: 17px; color: var(--muted); max-width: 620px; margin: 0; }
+  .credentials {
+    display: flex; gap: 28px; margin-top: 32px; flex-wrap: wrap;
+  }
+  .credential {
+    font-size: 13px; color: var(--muted-2);
+  }
+  .credential strong { display: block; color: var(--text); font-size: 14px; margin-bottom: 2px; }
+
+  /* Thesis strip */
+  .thesis {
+    padding: 34px 0; border-bottom: 1px solid #1E242B;
+  }
+  .thesis p {
+    font-size: 15px; color: var(--muted); margin: 0; max-width: 700px;
+  }
+  .thesis .q {
+    color: var(--teal); font-style: normal;
+  }
+
+  /* Section headers */
+  section { padding: 56px 0; border-bottom: 1px solid #1E242B; }
+  section:last-of-type { border-bottom: none; }
+  h2.display {
+    font-size: 20px; font-weight: 600; margin: 0 0 8px;
+  }
+  .section-sub { font-size: 13px; color: var(--muted-2); margin: 0 0 28px; }
+
+  /* Case study cards */
+  .case-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 26px;
+    margin-bottom: 18px;
+  }
+  .case-card.placeholder {
+    border-style: dashed;
+    color: var(--muted-2);
+  }
+  .case-tag {
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 10px; display: inline-block;
+  }
+  .case-title { font-size: 19px; font-weight: 600; margin: 0 0 10px; }
+  .case-claim { font-size: 14px; color: var(--muted); margin: 0 0 18px; max-width: 640px; }
+
+  /* Before / after stat block */
+  .stat-row {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    background: #10141A; border: 1px solid var(--panel-border); border-radius: 6px;
+    padding: 20px 24px; margin: 20px 0;
+  }
+  .stat-block { text-align: center; }
+  .stat-caption { font-size: 11px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 600; color: var(--muted); }
+  .stat-num.now { color: var(--amber); }
+  .stat-arrow { font-size: 22px; color: var(--muted-2); }
+  .stat-note { font-size: 13px; color: var(--muted); max-width: 200px; }
+
+  /* Bar chart with legend (grouped bars) */
+  .chart-legend { display: flex; gap: 18px; margin: 22px 0 14px; font-size: 12px; color: var(--muted); }
+  .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .chart { display: flex; align-items: flex-end; gap: 26px; height: 150px; margin: 0 0 8px; padding-left: 4px; border-left: 1px solid var(--panel-border); border-bottom: 1px solid var(--panel-border); }
+  .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+  .bar-pair { display: flex; align-items: flex-end; gap: 6px; height: 110px; }
+  .bar-single { width: 24px; border-radius: 3px 3px 0 0; position: relative; }
+  .bar-single .val { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text); font-weight: 600; font-family: 'IBM Plex Mono', monospace; white-space: nowrap; }
+  .seg-a { background: var(--amber); }
+  .seg-b { background: var(--teal); }
+  .bar-label { font-size: 10px; color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; }
+
+  .tension-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 18px;
+  }
+  .tension-item {
+    background: #10141A; border: 1px solid var(--panel-border); border-radius: 6px; padding: 14px;
+  }
+  .tension-item .name { font-weight: 600; font-size: 14px; }
+  .tension-item .prog { font-size: 12px; color: var(--teal); margin: 4px 0; }
+  .tension-item .note { font-size: 12px; color: var(--muted-2); }
+  .tension-item.clickable { cursor: pointer; transition: border-color 0.15s; }
+  .tension-item.clickable:hover { border-color: var(--amber); }
+
+  .verdict {
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    background: #10141A;
+    border-radius: 0 6px 6px 0;
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: #C4C9D0;
+  }
+  .verdict .label { color: var(--amber); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+
+  .cta-row { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+  .cta {
+    font-size: 13px; color: var(--text); border: 1px solid var(--panel-border);
+    padding: 8px 16px; border-radius: 20px; text-decoration: none; display: inline-block;
+  }
+  .cta:hover { border-color: var(--amber); color: var(--amber); }
+
+  footer {
+    padding: 40px 0 70px;
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Company Analysis Series · Digital Transformation & Agility</div>
+    <h1 class="display">Om Shah — Reading how companies actually make decisions.</h1>
+    <p class="lede">
+      MSc Management, University of Leeds (Merit). Dissertation: <em>(Distinction)</em> — how digital
+      transformation enhances organisational agility and decision-making. This is that question, applied
+      to real companies, using their own public data.
+    </p>
+    <div class="credentials">
+      <div class="credential"><strong>MSc Management</strong>University of Leeds</div>
+      <div class="credential"><strong>Distinction</strong>Dissertation on digital transformation & agility</div>
+      <div class="credential"><strong>Based in</strong>Leeds, UK · open to relocation</div>
+    </div>
+  </header>
+
+  <div class="thesis">
+    <p><span class="q">The question behind every case study here:</span> When a company changes how it uses
+    technology, does that actually make it more agile and better at deciding — or just busier? My dissertation
+    argued the theory. This series tests it against companies making that bet in public, right now.</p>
+  </div>
+
+  <section>
+    <h2 class="display">Case studies</h2>
+    <p class="section-sub">Each one: a contestable claim, backed by filings and public data, not a company description.</p>
+
+    <div class="case-card">
+      <span class="case-tag">01 — Semiconductors / AI infrastructure</span>
+      <h3 class="case-title">Nvidia: The moat that's being mined</h3>
+      <p class="case-claim">
+        Nvidia's four biggest customers supply ~61% of its revenue — and each one is simultaneously
+        building the chips meant to replace it. This is digital transformation as a defensive agility move:
+        four hyperscalers restructuring their own decision-making (build vs. buy) to escape single-vendor risk.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-caption">A year ago</div>
+          <div class="stat-num">25%</div>
+        </div>
+        <div class="stat-arrow">→</div>
+        <div class="stat-block">
+          <div class="stat-caption">Today</div>
+          <div class="stat-num now">39%</div>
+        </div>
+        <div class="stat-note">of Nvidia's total revenue now comes from just two customers</div>
+      </div>
+
+      <div class="chart-legend">
+        <span><span class="legend-dot" style="background:var(--amber);"></span>Customer A</span>
+        <span><span class="legend-dot" style="background:var(--teal);"></span>Customer B</span>
+      </div>
+      <div class="chart">
+        <div class="bar-group">
+          <div class="bar-pair">
+            <div class="bar-single seg-a" style="height:61%;"><span class="val">14%</span></div>
+            <div class="bar-single seg-b" style="height:48%;"><span class="val">11%</span></div>
+          </div>
+          <div class="bar-label">Q2 FY25</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-pair">
+            <div class="bar-single seg-a" style="height:78%;"><span class="val">18%</span></div>
+            <div class="bar-single seg-b" style="height:57%;"><span class="val">13%</span></div>
+          </div>
+          <div class="bar-label">Q4 FY25</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-pair">
+            <div class="bar-single seg-a" style="height:87%;"><span class="val">20%</span></div>
+            <div class="bar-single seg-b" style="height:65%;"><span class="val">15%</span></div>
+          </div>
+          <div class="bar-label">Q1 FY26</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-pair">
+            <div class="bar-single seg-a" style="height:100%;"><span class="val">23%</span></div>
+            <div class="bar-single seg-b" style="height:70%;"><span class="val">16%</span></div>
+          </div>
+          <div class="bar-label">Q2 FY26</div>
+        </div>
+      </div>
+      <div class="bar-label" style="margin-bottom:16px;">Revenue share by customer, per quarter (Nvidia 10-Q filings)</div>
+
+      <p class="bar-label" style="margin-bottom:10px;">Click a company to see the detail.</p>
+      <div class="tension-grid">
+        <div class="tension-item clickable" onclick="toggleDetail('detail-amazon')">
+          <div class="name">Amazon ＋</div>
+          <div class="prog">Trainium / Inferentia</div>
+          <div class="note" id="detail-amazon" style="display:none;">Now pairs Trainium with 3rd-party silicon for inference in its own data centres — the first non-Amazon-built chip deployed at scale inside its own infrastructure.</div>
+        </div>
+        <div class="tension-item clickable" onclick="toggleDetail('detail-google')">
+          <div class="name">Google ＋</div>
+          <div class="prog">TPU (Ironwood)</div>
+          <div class="note" id="detail-google" style="display:none;">Longest-running in-house chip programme of the four — roughly a decade of iteration, giving it the most mature substitute for Nvidia hardware.</div>
+        </div>
+        <div class="tension-item clickable" onclick="toggleDetail('detail-microsoft')">
+          <div class="name">Microsoft ＋</div>
+          <div class="prog">Maia</div>
+          <div class="note" id="detail-microsoft" style="display:none;">Earliest-stage of the four programmes. Pressure comes from two directions — its own chip ambitions, and OpenAI (its largest AI tenant) separately building chips too.</div>
+        </div>
+        <div class="tension-item clickable" onclick="toggleDetail('detail-meta')">
+          <div class="name">Meta ＋</div>
+          <div class="prog">MTIA</div>
+          <div class="note" id="detail-meta" style="display:none;">Signed a multi-gigawatt deal with a second merchant chip supplier in 2026 — the first major hyperscaler crack toward using someone other than Nvidia at scale.</div>
+        </div>
+      </div>
+
+      <div class="verdict">
+        <span class="label">Reading it through the dissertation lens</span>
+        Each hyperscaler is using digital transformation (in-house silicon) to increase organisational
+        agility (reduce single-supplier dependency) and change a core decision (build vs. buy). Nvidia's
+        CUDA lock-in is the only thing slowing that shift down — the open question is how many years that
+        buys.
+      </div>
+
+      <div class="cta-row">
+        <a class="cta" href="#sources-nvidia">Sources & filings ↓</a>
+      </div>
+      <p id="sources-nvidia" class="bar-label" style="margin-top:16px; line-height:1.8;">
+        Sources: <a href="https://investor.nvidia.com/financial-info/sec-filings/default.aspx" style="color:var(--teal);">Nvidia SEC filings (10-Q/10-K, investor relations)</a> ·
+        <a href="https://www.datacenterdynamics.com/en/news/two-unnamed-customers-accounted-for-almost-40-of-nvidias-q2-2026-revenue/" style="color:var(--teal);">Data Center Dynamics, customer concentration reporting</a> ·
+        <a href="https://daloopa.com/blog/analyst-pov/nvidia-customer-concentration-a-big-4-earnings-preview" style="color:var(--teal);">Daloopa, hyperscaler custom silicon analysis</a> ·
+        <a href="https://fourweekmba.com/nvidia-revenue-breakdown/" style="color:var(--teal);">FourWeekMBA, revenue breakdown</a>.
+        Analysis and framing are original.
+      </p>
+    </div>
+
+    <div class="case-card placeholder">
+      <span class="case-tag" style="color:var(--muted-2);">02 — Coming next</span>
+      <h3 class="case-title" style="color:var(--muted);">Unilever: purpose vs. margin, decided in public</h3>
+      <p class="case-claim">In progress.</p>
+    </div>
+
+    <div class="case-card placeholder">
+      <span class="case-tag" style="color:var(--muted-2);">03 — Coming next</span>
+      <h3 class="case-title" style="color:var(--muted);">Tesco: what data mastery didn't teach it abroad</h3>
+      <p class="case-claim">In progress.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built as part of an ongoing series applying dissertation research (digital transformation & organisational
+    agility) to live companies. Get in touch: <a href="https://www.linkedin.com/in/omtshah/">LinkedIn</a> · <a href="mailto:omshah2902@gmail.com">Email</a></p>
+  </footer>
+
+</div>
+
+
+<script>
+  function toggleDetail(id) {
+    var el = document.getElementById(id);
+    if (el.style.display === "none") {
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>
