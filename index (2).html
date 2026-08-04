@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Om Shah — Digital Transformation & Organisational Agility</title>
+<meta name="description" content="Interactive case studies applying MSc dissertation research on digital transformation and organisational agility to real companies." />
+<meta property="og:title" content="Om Shah — Digital Transformation & Organisational Agility" />
+<meta property="og:description" content="Interactive case studies applying MSc dissertation research on digital transformation and organisational agility to real companies." />
+<meta property="og:image" content="https://incredible-lamington-02e4d5.netlify.app/preview.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://incredible-lamington-02e4d5.netlify.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://incredible-lamington-02e4d5.netlify.app/preview.png" />
 <style>
   @import url('https://fonts.cdnfonts.com/css/space-grotesk');
   @import url('https://fonts.cdnfonts.com/css/ibm-plex-sans');
@@ -18,6 +26,7 @@
     --muted-2: #5B636D;
     --amber: #E8A33D;
     --teal: #5FBFAE;
+    --red: #D96A63;
   }
   * { box-sizing: border-box; }
   body {
@@ -118,11 +127,58 @@
   .tension-item {
     background: #10141A; border: 1px solid var(--panel-border); border-radius: 6px; padding: 14px;
   }
-  .tension-item .name { font-weight: 600; font-size: 14px; }
+  .tension-item .name, .flip-front .name { font-weight: 600; font-size: 14px; }
   .tension-item .prog { font-size: 12px; color: var(--teal); margin: 4px 0; }
   .tension-item .note { font-size: 12px; color: var(--muted-2); }
   .tension-item.clickable { cursor: pointer; transition: border-color 0.15s; }
   .tension-item.clickable:hover { border-color: var(--amber); }
+  .tension-item .cat, .flip-front .cat { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-2); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .cat-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .tension-item .brief, .flip-front .brief { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; font-weight: 400; }
+
+  .flip-card { perspective: 1200px; cursor: pointer; height: 190px; }
+  .flip-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.5s; transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    backface-visibility: hidden; border-radius: 6px; padding: 14px; box-sizing: border-box;
+  }
+  .flip-front { background: #10141A; border: 1px solid var(--panel-border); }
+  .flip-front:hover { border-color: var(--amber); }
+  .flip-back {
+    transform: rotateY(180deg); display: flex; align-items: center;
+    font-size: 12.5px; line-height: 1.45; font-weight: 500;
+  }
+  .flip-back.cat-market { background: var(--amber); color: #2A1B05; }
+  .flip-back.cat-financial { background: var(--red); color: #2E0E0B; }
+  .flip-back.cat-workforce { background: #A9B0B9; color: #1B1E21; }
+  .flip-back.cat-governance { background: var(--teal); color: #04211C; }
+  .flip-hint { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; position: absolute; bottom: 10px; right: 12px; }
+
+  .latest-badge {
+    background: var(--amber); color: #2A1B05; font-size: 10px; font-weight: 700;
+    padding: 2px 9px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+    margin-left: 10px; vertical-align: middle;
+  }
+
+  .timeline-wrap {
+    background: #10141A; border: 1px solid var(--panel-border); border-radius: 6px;
+    padding: 20px 24px 16px; margin: 20px 0 8px;
+  }
+  .timeline { display: flex; position: relative; padding: 0; }
+  .timeline::before {
+    content: ""; position: absolute; top: 5px; left: 60px; right: 60px; height: 1px;
+    background: var(--panel-border); z-index: 0;
+  }
+  .timeline-item { flex: 1; text-align: center; position: relative; z-index: 1; padding: 0 5px; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted-2); margin: 0 auto 12px; }
+  .timeline-dot.amber { background: var(--amber); }
+  .timeline-dot.red { background: var(--red); }
+  .timeline-date { font-size: 10px; color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; margin-bottom: 4px; }
+  .timeline-text { font-size: 12px; color: var(--muted); max-width: 140px; margin: 0 auto; line-height: 1.35; }
 
   .verdict {
     border-left: 3px solid var(--amber);
@@ -178,6 +234,125 @@
   <section>
     <h2 class="display">Case studies</h2>
     <p class="section-sub">Each one: a contestable claim, backed by filings and public data, not a company description.</p>
+
+    <div class="case-card">
+      <span class="case-tag">02 — Consumer goods / Corporate restructuring<span class="latest-badge">Latest</span></span>
+      <h3 class="case-title">Unilever: the spinoff that was supposed to prove a point</h3>
+      <p class="case-claim">
+        For years, one big investor kept telling Unilever the same thing: you're trying to do too much.
+        Soap, shampoo, tea, mayonnaise, ice cream — all under one roof, all slowing each other down. So in
+        2024, Unilever agreed. It announced it would cut ice cream loose into its own separate company, and
+        cut up to 7,500 office jobs while it was at it. The promise: both halves would come out leaner and
+        faster.
+        <br><br>
+        In December 2025, the split finally happened. The new ice cream company — now home to Ben &amp;
+        Jerry's and Magnum — went public on its own for the first time. Six weeks later, it delivered its
+        first earnings report as an independent business. It missed on profit. It missed on cash flow. The
+        share price fell, and investors who'd been handed free shares in the split rushed to sell them.
+        <br><br>
+        But here's the twist that makes this more than "a spinoff had a rough start": buried in the original
+        2000 deal where Unilever first bought Ben &amp; Jerry's is a clause that still applies today — an
+        independent board, not the new company itself, controls Ben &amp; Jerry's activism and identity. So
+        even after being "set free," part of this business still isn't fully in charge of its own decisions.
+      </p>
+
+      <div class="timeline-wrap">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024</div>
+            <div class="timeline-text">Peltz pressure, spinoff announced</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-date">Dec 2025</div>
+            <div class="timeline-text">IPO at €7.8bn, below expectations</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot red"></div>
+            <div class="timeline-date">Feb 2026</div>
+            <div class="timeline-text">Maiden results miss, shares fall</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Ongoing</div>
+            <div class="timeline-text">Ben & Jerry's clause still limits control</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="bar-label" style="margin:14px 0 10px;">Click a card to flip it.</p>
+      <div class="tension-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="cat"><span class="cat-dot" style="background:var(--amber);"></span>Market</div>
+              <div class="name">IPO valuation ＋</div>
+              <div class="brief">€7.8bn, below expectations — investors weren't fully convinced from day one.</div>
+            </div>
+            <div class="flip-back cat-market">
+              The Magnum Ice Cream Company listed in December 2025 valued below earlier expectations, reflecting investor doubt about brand cohesion and governance under the new standalone structure.
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="cat"><span class="cat-dot" style="background:var(--red);"></span>Financial</div>
+              <div class="name">Maiden results ＋</div>
+              <div class="brief">Profit and cash flow both missed forecast in its first report as a standalone company.</div>
+            </div>
+            <div class="flip-back cat-financial">
+              First results as a standalone company (Feb 2026) showed sharp declines in earnings and cash flow versus forecast, driven partly by one-off separation costs — shares fell as investors who received free Magnum shares in the demerger moved to sell.
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="cat"><span class="cat-dot" style="background:var(--muted-2);"></span>Workforce</div>
+              <div class="name">Job cuts ＋</div>
+              <div class="brief">Up to 7,500 roles cut alongside the split, under activist pressure to streamline.</div>
+            </div>
+            <div class="flip-back cat-workforce">
+              Announced alongside the spinoff as part of a productivity push under pressure from activist investor Nelson Peltz — the streamlining was framed as making Unilever more focused and faster-moving.
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="cat"><span class="cat-dot" style="background:var(--teal);"></span>Governance</div>
+              <div class="name">Ben &amp; Jerry's clause ＋</div>
+              <div class="brief">A 25-year-old contract clause still limits how independent the new company really is.</div>
+            </div>
+            <div class="flip-back cat-governance">
+              A contractually binding social-mission clause from Unilever's original 2000 acquisition gives an independent board control over Ben & Jerry's activism and brand identity — a governance constraint the new standalone company inherits, limiting how freely it can actually operate.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="verdict">
+        <span class="label">Reading it through the dissertation lens</span>
+        This is the more honest half of the digital-transformation-and-agility story: the theory says
+        restructuring should increase focus and speed of decision-making. In practice, the transformation
+        itself came with real costs, a rocky market reception, and a governance structure inherited from
+        decades ago that constrains the very independence the spinoff was meant to deliver. Agility isn't
+        just a decision to restructure — it's whether the new structure can actually move freely afterward.
+      </div>
+
+      <div class="cta-row">
+        <a class="cta" href="#sources-unilever">Sources & filings ↓</a>
+      </div>
+      <p id="sources-unilever" class="bar-label" style="margin-top:16px; line-height:1.8;">
+        Sources: <a href="https://www.ajbell.co.uk/news/magnums-meltdown-can-unilevers-ice-cream-spin-recover-bad-start" style="color:var(--teal);">AJ Bell, Magnum's post-spinoff performance</a> ·
+        <a href="https://www.ainvest.com/news/unilever-magnum-spinoff-governance-risks-lurking-shadow-2512/" style="color:var(--teal);">Governance risks in the Magnum spinoff structure</a> ·
+        <a href="https://www.mexc.com/it-IT/news/323052" style="color:var(--teal);">Demerger completion and share consolidation details</a> ·
+        <a href="https://www.fortune.com/europe/2024/03/19/ben-jerrys-magnum-unilever-separate-ice-cream-unit-7500-jobs-layoffs-activist-investor-nelson-peltz-pressure-streamline" style="color:var(--teal);">Fortune, original spinoff and job cuts announcement</a>.
+        Analysis and framing are original.
+      </p>
+    </div>
 
     <div class="case-card">
       <span class="case-tag">01 — Semiconductors / AI infrastructure</span>
@@ -282,21 +457,15 @@
     </div>
 
     <div class="case-card placeholder">
-      <span class="case-tag" style="color:var(--muted-2);">02 — Coming next</span>
-      <h3 class="case-title" style="color:var(--muted);">Unilever: purpose vs. margin, decided in public</h3>
-      <p class="case-claim">In progress.</p>
-    </div>
-
-    <div class="case-card placeholder">
       <span class="case-tag" style="color:var(--muted-2);">03 — Coming next</span>
-      <h3 class="case-title" style="color:var(--muted);">Tesco: what data mastery didn't teach it abroad</h3>
+      <h3 class="case-title" style="color:var(--muted);">Tesco: the growth story has a footnote it doesn't mention</h3>
       <p class="case-claim">In progress.</p>
     </div>
   </section>
 
   <footer>
     <p>Built as part of an ongoing series applying dissertation research (digital transformation & organisational
-    agility) to live companies. Get in touch: <a href="https://www.linkedin.com/in/omtshah/">LinkedIn</a> · <a href="mailto:omshah2902@gmail.com">Email</a>· <a href="https://github.com/omshah2902/Portfolio">GitHub</a></p>
+    agility) to live companies. Get in touch: <a href="https://www.linkedin.com/in/omtshah/">LinkedIn</a> · <a href="mailto:omshah2902@gmail.com">Email</a></p>
   </footer>
 
 </div>
